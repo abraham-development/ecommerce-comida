@@ -121,25 +121,25 @@ export default function HomePage() {
         <div className="pointer-events-none absolute -top-32 -right-28 h-96 w-96 rounded-full bg-[#e6a63a]/20 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 -left-40 h-80 w-80 rounded-full bg-[#b83a2d]/10 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.02fr_.98fr] lg:px-8 lg:py-24">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.02fr_.98fr] lg:px-8 lg:py-24">
           <div className="relative z-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#e4cfad] bg-white/75 px-4 py-2 text-xs font-black tracking-[0.14em] text-[#8d3b2e] uppercase shadow-sm">
               <Sparkles className="h-4 w-4 text-[#d88a22]" /> Hecha en casa, en Lince
             </span>
 
-            <h1 className="font-display mt-7 max-w-3xl text-5xl leading-[0.98] font-black tracking-[-0.045em] text-[#2d2118] sm:text-6xl lg:text-7xl">
+            <h1 className="font-display mt-7 max-w-3xl text-[clamp(2.65rem,12vw,3rem)] leading-[0.98] font-black tracking-[-0.045em] text-[#2d2118] sm:text-6xl lg:text-7xl">
               La papa rellena de Alicia:
               <span className="mt-2 block text-[#b83a2d]">doradita por fuera, criolla por dentro.</span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-lg leading-8 text-[#725b47] sm:text-xl">
+            <p className="mt-6 max-w-xl text-base leading-7 text-[#725b47] sm:mt-7 sm:text-xl sm:leading-8">
               Papa suave y dorada con un relleno casero de carne sazonada, cebolla, huevo y aceituna. Servida con salsa criolla para completar el antojo.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-3 text-sm font-extrabold text-[#4d3a2c]">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 shadow-sm"><Check className="h-4 w-4 text-[#3f5b3b]" /> Preparada por Alicia</span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 shadow-sm"><MapPin className="h-4 w-4 text-[#b83a2d]" /> Delivery en Lince</span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 shadow-sm"><Heart className="h-4 w-4 text-[#b83a2d]" /> Sabor casero</span>
+            <div className="mt-7 flex flex-wrap gap-2.5 text-xs font-extrabold text-[#4d3a2c] sm:gap-3 sm:text-sm">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2.5 shadow-sm sm:px-4"><Check className="h-4 w-4 text-[#3f5b3b]" /> Preparada por Alicia</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2.5 shadow-sm sm:px-4"><MapPin className="h-4 w-4 text-[#b83a2d]" /> Delivery en Lince</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2.5 shadow-sm sm:px-4"><Heart className="h-4 w-4 text-[#b83a2d]" /> Sabor casero</span>
             </div>
 
             <div className="mt-9">
@@ -153,7 +153,7 @@ export default function HomePage() {
 
           <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div className="absolute -inset-4 rotate-2 rounded-[2.75rem] bg-[#e6a63a]" aria-hidden="true" />
-            <figure className="relative overflow-hidden rounded-[2.5rem] border-8 border-white bg-[#ead8bd] shadow-[0_28px_80px_rgba(65,39,22,.25)]">
+            <figure className="relative overflow-hidden rounded-[2rem] border-4 border-white bg-[#ead8bd] shadow-[0_28px_80px_rgba(65,39,22,.25)] sm:rounded-[2.5rem] sm:border-8">
               <Image
                 src={heroImage}
                 alt="Papa rellena dorada servida con salsa criolla"
@@ -165,8 +165,8 @@ export default function HomePage() {
                 Nuestra protagonista: papa rellena con salsa criolla
               </figcaption>
             </figure>
-            <div className="absolute -right-4 -bottom-5 grid h-28 w-28 rotate-6 place-items-center rounded-full border-4 border-[#fff8eb] bg-[#b83a2d] text-center text-white shadow-xl sm:-right-8 sm:h-32 sm:w-32">
-              <span><small className="font-bold">Desde</small><strong className="font-display block text-3xl">S/ 15</strong></span>
+            <div className="absolute -right-2 -bottom-4 grid h-24 w-24 rotate-6 place-items-center rounded-full border-4 border-[#fff8eb] bg-[#b83a2d] text-center text-white shadow-xl sm:-right-8 sm:-bottom-5 sm:h-32 sm:w-32">
+              <span><small className="font-bold">Desde</small><strong className="font-display block text-2xl sm:text-3xl">S/ 15</strong></span>
             </div>
           </div>
         </div>
@@ -177,11 +177,11 @@ export default function HomePage() {
       </section>
 
       <section id="la-papa" className="scroll-mt-44 bg-[#2d2118] text-white lg:scroll-mt-32">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
             <div>
               <p className="text-sm font-black tracking-[0.18em] text-[#efb24f] uppercase">Qué vas a saborear</p>
-              <h2 className="font-display mt-4 text-4xl leading-tight font-black sm:text-5xl">Un antojo completo en cada bocado.</h2>
+              <h2 className="font-display mt-4 text-3xl leading-tight font-black sm:text-5xl">Un antojo completo en cada bocado.</h2>
             </div>
             <p className="max-w-2xl text-lg leading-8 text-[#e8d8c2]">
               Una cubierta de papa tierna con acabado dorado y un corazón criollo bien sazonado. La cebolla fresca y el limón de la salsa criolla aportan el contraste que hace imposible dejarla a medias.
@@ -206,11 +206,11 @@ export default function HomePage() {
       </section>
 
       <section id="historia" className="scroll-mt-44 bg-[#f4e7d2] lg:scroll-mt-32">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
-          <article className="rounded-[2.25rem] bg-[#fffaf1] p-7 shadow-[0_18px_55px_rgba(75,48,28,.08)] sm:p-10">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:gap-8 sm:px-6 sm:py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
+          <article className="rounded-[1.75rem] bg-[#fffaf1] p-6 shadow-[0_18px_55px_rgba(75,48,28,.08)] sm:rounded-[2.25rem] sm:p-10">
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#e6a63a]/20 text-[#9a5616]"><UtensilsCrossed className="h-7 w-7" /></span>
             <p className="mt-8 text-sm font-black tracking-[0.16em] text-[#b83a2d] uppercase">Un clásico criollo</p>
-            <h2 className="font-display mt-3 text-4xl font-black text-[#2d2118]">Una historia de encuentro y sabor.</h2>
+            <h2 className="font-display mt-3 text-3xl font-black text-[#2d2118] sm:text-4xl">Una historia de encuentro y sabor.</h2>
             <p className="mt-5 leading-8 text-[#725b47]">
               La papa rellena es una de esas preparaciones que resumen el mestizaje culinario del Perú: nuestra papa envuelve un guiso de carne y se transforma en un plato generoso, cotidiano y profundamente criollo.
             </p>
@@ -219,11 +219,11 @@ export default function HomePage() {
             </p>
           </article>
 
-          <article className="relative overflow-hidden rounded-[2.25rem] bg-[#b83a2d] p-7 text-white sm:p-10">
+          <article className="relative overflow-hidden rounded-[1.75rem] bg-[#b83a2d] p-6 text-white sm:rounded-[2.25rem] sm:p-10">
             <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full border-[34px] border-white/10" aria-hidden="true" />
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white/15"><ChefHat className="h-7 w-7" /></span>
             <p className="mt-8 text-sm font-black tracking-[0.16em] text-[#ffda9d] uppercase">Alicia, detrás del sabor</p>
-            <h2 className="font-display mt-3 max-w-md text-4xl font-black">Comida hecha en casa, de verdad.</h2>
+            <h2 className="font-display mt-3 max-w-md text-3xl font-black sm:text-4xl">Comida hecha en casa, de verdad.</h2>
             <p className="mt-5 max-w-lg leading-8 text-[#ffe9dd]">
               Alicia prepara cada pedido con el cuidado de una comida para la familia. Hoy comienza con una sola especialidad: una papa rellena sabrosa, honesta y lista para compartir.
             </p>
@@ -235,10 +235,10 @@ export default function HomePage() {
       </section>
 
       <section id="como-pedir" className="scroll-mt-44 bg-[#fffaf1] lg:scroll-mt-32">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-black tracking-[0.18em] text-[#b83a2d] uppercase">Así de sencillo</p>
-            <h2 className="font-display mt-4 text-4xl font-black text-[#2d2118] sm:text-5xl">Del antojo al pedido en tres pasos.</h2>
+            <h2 className="font-display mt-4 text-3xl font-black text-[#2d2118] sm:text-5xl">Del antojo al pedido en tres pasos.</h2>
           </div>
 
           <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -262,10 +262,10 @@ export default function HomePage() {
       </section>
 
       <section className="bg-[#3f5b3b] text-white">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:py-24">
           <div>
             <p className="text-sm font-black tracking-[0.18em] text-[#ffd087] uppercase">Antes de pedir</p>
-            <h2 className="font-display mt-4 text-4xl font-black sm:text-5xl">Todo claro, desde el primer mensaje.</h2>
+            <h2 className="font-display mt-4 text-3xl font-black sm:text-5xl">Todo claro, desde el primer mensaje.</h2>
           </div>
           <div className="divide-y divide-white/15 border-y border-white/15">
             {[
@@ -285,10 +285,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="paper-texture px-4 py-20 sm:px-6 lg:py-28">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-[#e6a63a] px-6 py-12 text-center shadow-[0_24px_70px_rgba(104,64,24,.16)] sm:px-12 sm:py-16">
+      <section className="paper-texture px-4 py-16 sm:px-6 sm:py-20 lg:py-28">
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.75rem] bg-[#e6a63a] px-5 py-10 text-center shadow-[0_24px_70px_rgba(104,64,24,.16)] sm:rounded-[2.5rem] sm:px-12 sm:py-16">
           <p className="text-sm font-black tracking-[0.18em] text-[#6d3c13] uppercase">¿Ya se te antojó?</p>
-          <h2 className="font-display mx-auto mt-4 max-w-3xl text-4xl font-black text-[#2d2118] sm:text-6xl">Tu próxima papa rellena está a un mensaje.</h2>
+          <h2 className="font-display mx-auto mt-4 max-w-3xl text-3xl font-black text-[#2d2118] sm:text-6xl">Tu próxima papa rellena está a un mensaje.</h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#684514]">Escríbele a Alicia, confirma la disponibilidad y coordinemos tu entrega en Lince.</p>
           <a
             href={directOrderUrl}
@@ -301,7 +301,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-[#ddcdb5] bg-[#2d2118] px-4 py-10 text-white">
+      <footer className="border-t border-[#ddcdb5] bg-[#2d2118] px-4 pt-10 pb-24 text-white md:py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
           <div>
             <strong className="font-display text-2xl">Alicia</strong>

@@ -40,7 +40,7 @@ export default function WhatsAppOrder({ phone, options, maxQuantity }: WhatsAppO
 
   return (
     <>
-      <section id="pedido" aria-labelledby="pedido-title" className="max-w-xl scroll-mt-44 rounded-[2rem] border border-[#e4d2b8] bg-white/90 p-5 shadow-[0_18px_55px_rgba(75,48,28,.1)] backdrop-blur sm:p-6 lg:scroll-mt-32">
+      <section id="pedido" aria-labelledby="pedido-title" className="max-w-xl scroll-mt-44 rounded-[1.5rem] border border-[#e4d2b8] bg-white/90 p-4 shadow-[0_18px_55px_rgba(75,48,28,.1)] backdrop-blur sm:rounded-[2rem] sm:p-6 lg:scroll-mt-32">
         <div>
           <p id="pedido-title" className="text-sm font-black tracking-[0.12em] text-[#8d3b2e] uppercase">Arma tu pedido</p>
           <p className="font-display mt-1 text-2xl font-black text-[#2d2118]">Elige una o combina las dos</p>
@@ -56,7 +56,7 @@ export default function WhatsAppOrder({ phone, options, maxQuantity }: WhatsAppO
             return (
               <article
                 key={option.id}
-                className={`flex flex-col gap-4 rounded-2xl border-2 p-4 transition sm:flex-row sm:items-center sm:justify-between ${isSelected ? "border-[#b83a2d] bg-[#fff4e7] shadow-sm" : "border-[#eadcc8] bg-white"}`}
+                className={`flex flex-col gap-4 rounded-2xl border-2 p-3.5 transition sm:flex-row sm:items-center sm:justify-between sm:p-4 ${isSelected ? "border-[#b83a2d] bg-[#fff4e7] shadow-sm" : "border-[#eadcc8] bg-white"}`}
               >
                 <label className="flex min-w-0 cursor-pointer items-center gap-3">
                   <input
@@ -77,9 +77,9 @@ export default function WhatsAppOrder({ phone, options, maxQuantity }: WhatsAppO
                 <div className="flex items-center justify-between gap-3 sm:block sm:text-center">
                   <span className="text-xs font-extrabold tracking-wide text-[#755e4b] uppercase sm:mb-2 sm:block">Cantidad</span>
                   <div className="inline-flex items-center rounded-full border border-[#d8c4a7] bg-[#fff8eb] p-1" role="group" aria-label={`Cantidad de ${option.plural}`}>
-                    <button type="button" onClick={() => setOptionQuantity(option.id, quantity - 1)} disabled={quantity === 0} aria-label={`Reducir cantidad de ${option.name}`} className="grid h-9 w-9 place-items-center rounded-full text-[#704c32] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-35"><Minus className="h-4 w-4" /></button>
+                    <button type="button" onClick={() => setOptionQuantity(option.id, quantity - 1)} disabled={quantity === 0} aria-label={`Reducir cantidad de ${option.name}`} className="grid h-11 w-11 place-items-center rounded-full text-[#704c32] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-35 sm:h-10 sm:w-10"><Minus className="h-4 w-4" /></button>
                     <output aria-live="polite" aria-label={`Cantidad actual de ${option.name}`} className="min-w-10 text-center text-lg font-black text-[#2d2118]">{quantity}</output>
-                    <button type="button" onClick={() => setOptionQuantity(option.id, quantity + 1)} disabled={quantity === maxQuantity} aria-label={`Aumentar cantidad de ${option.name}`} className="grid h-9 w-9 place-items-center rounded-full text-[#704c32] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-35"><Plus className="h-4 w-4" /></button>
+                    <button type="button" onClick={() => setOptionQuantity(option.id, quantity + 1)} disabled={quantity === maxQuantity} aria-label={`Aumentar cantidad de ${option.name}`} className="grid h-11 w-11 place-items-center rounded-full text-[#704c32] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-35 sm:h-10 sm:w-10"><Plus className="h-4 w-4" /></button>
                   </div>
                 </div>
               </article>
@@ -100,8 +100,8 @@ export default function WhatsAppOrder({ phone, options, maxQuantity }: WhatsAppO
         </div>
 
         {hasItems ? (
-          <a href={orderUrl} target="_blank" rel="noreferrer" className="mt-5 flex min-h-14 w-full items-center justify-center gap-3 rounded-full bg-[#25d366] px-6 text-lg font-black text-[#102b19] shadow-[0_12px_28px_rgba(37,211,102,.25)] transition hover:-translate-y-0.5 hover:bg-[#21c15d]">
-            <WhatsAppIcon className="h-6 w-6" /> Pedir por WhatsApp
+          <a href={orderUrl} target="_blank" rel="noreferrer" className="mt-5 flex min-h-14 w-full items-center justify-center gap-2.5 rounded-full bg-[#25d366] px-4 text-base font-black whitespace-nowrap text-[#102b19] shadow-[0_12px_28px_rgba(37,211,102,.25)] transition hover:-translate-y-0.5 hover:bg-[#21c15d] sm:gap-3 sm:px-6 sm:text-lg">
+            <WhatsAppIcon className="h-6 w-6 shrink-0" /> Pedir por WhatsApp
           </a>
         ) : (
           <button type="button" disabled className="mt-5 flex min-h-14 w-full cursor-not-allowed items-center justify-center rounded-full bg-[#d8d0c4] px-6 text-base font-black text-[#776d63]">
@@ -112,8 +112,8 @@ export default function WhatsAppOrder({ phone, options, maxQuantity }: WhatsAppO
       </section>
 
       {hasItems && (
-        <a href={orderUrl} target="_blank" rel="noreferrer" aria-label={`Pedir ${totalQuantity} ${totalQuantity === 1 ? "papa rellena" : "papas rellenas"} por WhatsApp`} className="fixed right-4 bottom-4 z-50 flex min-h-14 items-center gap-3 rounded-full bg-[#25d366] px-5 font-black text-[#102b19] shadow-[0_14px_36px_rgba(16,43,25,.3)] transition hover:-translate-y-1 md:hidden">
-          <WhatsAppIcon className="h-6 w-6" /> Pedir · S/ {total.toFixed(2)}
+        <a href={orderUrl} target="_blank" rel="noreferrer" aria-label={`Pedir ${totalQuantity} ${totalQuantity === 1 ? "papa rellena" : "papas rellenas"} por WhatsApp`} className="fixed right-3 bottom-3 z-50 flex min-h-12 items-center gap-2 rounded-full bg-[#25d366] px-4 text-sm font-black whitespace-nowrap text-[#102b19] shadow-[0_14px_36px_rgba(16,43,25,.3)] transition hover:-translate-y-1 sm:right-4 sm:bottom-4 sm:min-h-14 sm:gap-3 sm:px-5 sm:text-base md:hidden">
+          <WhatsAppIcon className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" /> Pedir · S/ {total.toFixed(2)}
         </a>
       )}
     </>
