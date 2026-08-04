@@ -1,27 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
-import Button from "@/components/ui/Button";
-
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
+export default function ErrorPage({ reset }: { reset: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-      <div className="text-6xl mb-4">⚠️</div>
-      <h2 className="text-2xl font-bold text-white mb-2">Algo salió mal</h2>
-      <p className="text-slate-400 mb-6 max-w-md">
-        Ocurrió un error inesperado. Por favor intentá de nuevo.
-      </p>
-      <Button onClick={reset}>Intentar de nuevo</Button>
-    </div>
+    <main className="grid min-h-screen place-items-center bg-[#fff8eb] px-4 text-center">
+      <div>
+        <p className="text-sm font-black tracking-[0.16em] text-[#b83a2d] uppercase">Algo salió mal</p>
+        <h1 className="font-display mt-3 text-4xl font-black text-[#2d2118]">Volvamos a intentarlo.</h1>
+        <button type="button" onClick={reset} className="mt-7 min-h-12 rounded-full bg-[#3f5b3b] px-7 font-black text-white">Reintentar</button>
+      </div>
+    </main>
   );
 }
