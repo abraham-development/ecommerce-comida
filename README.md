@@ -16,7 +16,7 @@ La aplicación queda disponible en [http://localhost:3000](http://localhost:3000
 Copia `.env.example` a `.env.local` y configura:
 
 - `WHATSAPP_NUMBER`: número con código de país, solo dígitos. Para Perú: `51` más nueve dígitos.
-- `SITE_URL`: URL pública del sitio para metadatos Open Graph.
+- `SITE_URL`: dominio público para metadatos Open Graph. Se acepta con o sin protocolo; en producción se recomienda `https://tudominio.com`.
 
 El número no se imprime en la interfaz. Solo se incorpora en el enlace que abre WhatsApp con el pedido preparado.
 

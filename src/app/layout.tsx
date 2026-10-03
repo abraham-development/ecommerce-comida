@@ -3,10 +3,17 @@ import type { Metadata, Viewport } from "next";
 import heroImage from "../../recursos_imagenes/papa_rellena.jpeg";
 import "./globals.css";
 
-const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
+function getMetadataBase(): URL {
+  const configuredSiteUrl = process.env.SITE_URL?.trim() || "http://localhost:3000";
+  const siteUrlWithProtocol = /^https?:\/\//i.test(configuredSiteUrl)
+    ? configuredSiteUrl
+    : `https://${configuredSiteUrl}`;
+
+  return new URL(siteUrlWithProtocol);
+}
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: getMetadataBase(),
   title: "Papa rellena en Lince | Alicia · Comida en casa",
   description:
     "Papa rellena criolla preparada en casa por Alicia. Pide por WhatsApp y coordina tu delivery en Lince.",
@@ -51,7 +58,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es-PE" data-scroll-behavior="smooth">
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
