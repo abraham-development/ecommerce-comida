@@ -79,7 +79,7 @@ next.config.mjs                          Redirects de las rutas del ecommerce an
 recursos_imagenes/papa_rellena.jpeg      Foto principal; no recortarla: presentarla con next/image
 ```
 
-Secciones con ancla: `#inicio`, `#pedido`, `#la-papa`, `#historia`, `#como-pedir`. El header es fijo (franja de delivery + marca + nav). En `lg` la nav va en el header; debajo, una nav móvil. El `main` compensa esa altura con padding superior.
+Secciones con ancla: `#inicio`, `#pedido`, `#la-papa`, `#historia`, `#como-pedir`. El header es fijo (franja de delivery + marca + nav). En `lg` la nav va en el header. En pantallas menores, va en un menú hamburguesa a la izquierda del logotipo. El `main` compensa esa altura con padding superior.
 
 ## Variables de entorno
 
@@ -117,6 +117,7 @@ Secciones con ancla: `#inicio`, `#pedido`, `#la-papa`, `#historia`, `#como-pedir
 - 2026-10-03 · La papa rellena + ensalada especial baja a S/ 7. El badge del hero muestra el precio más bajo.
 - 2026-10-03 · La papa rellena + ensalada especial + arroz chaufa baja a S/ 12.
 - 2026-10-03 · En «Tu pedido» las cremas se anuncian como «Tu pedido incluye gratis». El mensaje de WhatsApp dice lo mismo.
+- 2026-10-03 · En celular, la navegación sale de la franja bajo el header y pasa a un menú hamburguesa a la izquierda del logotipo.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

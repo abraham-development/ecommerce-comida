@@ -59,7 +59,7 @@ export default function WhatsAppOrder({ phone, options, creams, maxQuantity }: W
 
   return (
     <>
-      <section id="pedido" aria-labelledby="pedido-title" className="scroll-mt-44 rounded-[1.5rem] border border-[#e4d2b8] bg-white/90 p-4 pb-4 shadow-[0_18px_55px_rgba(75,48,28,.1)] backdrop-blur sm:rounded-[2rem] sm:p-5 lg:scroll-mt-32">
+      <section id="pedido" aria-labelledby="pedido-title" className="scroll-mt-32 rounded-[1.5rem] border border-[#e4d2b8] bg-white/90 p-4 pb-4 shadow-[0_18px_55px_rgba(75,48,28,.1)] backdrop-blur sm:rounded-[2rem] sm:p-5">
         <div>
           <p id="pedido-title" className="text-sm font-black tracking-[0.12em] text-[#8d3b2e] uppercase">Arma tu pedido</p>
           <p className="font-display mt-1 text-2xl font-black text-[#2d2118]">Elige y mira tu cuenta</p>

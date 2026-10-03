@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import heroImage from "../../recursos_imagenes/papa_rellena.jpeg";
+import MobileNav from "@/components/landing/MobileNav";
 import WhatsAppIcon from "@/components/landing/WhatsAppIcon";
 import WhatsAppOrder from "@/components/landing/WhatsAppOrder";
 import { siteConfig } from "@/lib/site";
@@ -65,7 +66,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="overflow-hidden pt-[172px] sm:pt-[168px] lg:pt-[120px]">
+    <main className="overflow-hidden pt-[124px] sm:pt-[120px]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
@@ -78,7 +79,9 @@ export default function HomePage() {
 
         <header className="border-b border-[#eadcc8]/90 bg-[#fff8eb]/96 backdrop-blur-xl">
           <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-            <a href="#inicio" className="group flex items-center gap-3" aria-label="Ir al inicio">
+            <div className="flex min-w-0 items-center gap-1">
+              <MobileNav />
+              <a href="#inicio" className="group flex items-center gap-3" aria-label="Ir al inicio">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-[#b83a2d] text-white shadow-[0_8px_24px_rgba(184,58,45,.22)] transition group-hover:-rotate-6">
                 <ChefHat className="h-6 w-6" />
               </span>
@@ -88,7 +91,8 @@ export default function HomePage() {
                   Comida en casa
                 </span>
               </span>
-            </a>
+              </a>
+            </div>
 
             <nav className="hidden items-center gap-7 text-sm font-bold text-[#684f3c] lg:flex" aria-label="Navegación principal">
               <a href="#inicio" className="transition hover:text-[#b83a2d]">Inicio</a>
@@ -108,17 +112,10 @@ export default function HomePage() {
               <span className="sm:hidden">Pedir</span>
             </a>
           </div>
-
-          <nav className="flex h-12 items-center justify-between gap-2 border-t border-[#eadcc8]/75 px-4 text-xs font-black tracking-wide text-[#684f3c] sm:justify-center sm:gap-8 sm:text-sm lg:hidden" aria-label="Navegación móvil">
-            <a href="#inicio" className="transition hover:text-[#b83a2d]">Inicio</a>
-            <a href="#la-papa" className="transition hover:text-[#b83a2d]">La papa</a>
-            <a href="#historia" className="transition hover:text-[#b83a2d]">Nuestra historia</a>
-            <a href="#como-pedir" className="transition hover:text-[#b83a2d]">Cómo pedir</a>
-          </nav>
         </header>
       </div>
 
-      <section id="inicio" className="paper-texture relative scroll-mt-44 lg:scroll-mt-32">
+      <section id="inicio" className="paper-texture relative scroll-mt-32">
         <div className="pointer-events-none absolute -top-32 -right-28 h-96 w-96 rounded-full bg-[#e6a63a]/20 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 -left-40 h-80 w-80 rounded-full bg-[#b83a2d]/10 blur-3xl" />
 
@@ -178,7 +175,7 @@ export default function HomePage() {
         </a>
       </section>
 
-      <section id="la-papa" className="scroll-mt-44 bg-[#2d2118] text-white lg:scroll-mt-32">
+      <section id="la-papa" className="scroll-mt-32 bg-[#2d2118] text-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
             <div>
@@ -207,7 +204,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="historia" className="scroll-mt-44 bg-[#f4e7d2] lg:scroll-mt-32">
+      <section id="historia" className="scroll-mt-32 bg-[#f4e7d2]">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:gap-8 sm:px-6 sm:py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
           <article className="rounded-[1.75rem] bg-[#fffaf1] p-6 shadow-[0_18px_55px_rgba(75,48,28,.08)] sm:rounded-[2.25rem] sm:p-10">
             <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#e6a63a]/20 text-[#9a5616]"><UtensilsCrossed className="h-7 w-7" /></span>
@@ -236,7 +233,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="como-pedir" className="scroll-mt-44 bg-[#fffaf1] lg:scroll-mt-32">
+      <section id="como-pedir" className="scroll-mt-32 bg-[#fffaf1]">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-black tracking-[0.18em] text-[#b83a2d] uppercase">Así de sencillo</p>
