@@ -30,7 +30,7 @@ npm run start
 
 ## Alcance actual
 
-- Dos variedades: tradicional a S/ 15 y lomo saltado a S/ 17.
+- Tres variedades de prueba: papa rellena + ensalada especial a S/ 7, ají de gallina a S/ 16 y papa rellena + ensalada especial + arroz chaufa a S/ 12.
 - Cada pedido incluye crema huancaína, crema de ocopa y ají.
 - Cantidad independiente de 0 a 20 unidades por variedad y subtotal combinado automático.
 - Entrega inicial en Lince; disponibilidad y delivery se confirman por WhatsApp.

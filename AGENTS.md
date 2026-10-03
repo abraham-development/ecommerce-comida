@@ -27,16 +27,18 @@ Después de cambios significativos de código, ejecutar `npm run build`. El siti
 Fuente de verdad: `src/lib/site.ts`. No hardcodear precios ni nombres en componentes nuevos; si el copy de la página o el FAQ los menciona, mantenerlos alineados con esa config.
 
 - Marca: `Alicia · Comida en casa`.
-- Dos variedades, combinables en el mismo pedido:
-  - `tradicional`: papa rellena tradicional, S/ 15.
-  - `lomo-saltado`: papa rellena de lomo saltado, S/ 17.
+- Tres variedades de prueba, combinables en el mismo pedido:
+  - `tradicional`: papa rellena + ensalada especial, S/ 7.
+  - `lomo-saltado`: papa rellena + ensalada especial + arroz chaufa, S/ 12.
+  - `aji-de-gallina`: papa rellena de ají de gallina, S/ 16. Es una muestra para ver el selector; Abraham la confirma o la retira.
 - Cada pedido incluye crema huancaína, crema de ocopa y ají. No son opcionales ni tienen precio aparte.
-- Cantidad independiente de 0 a 20 por variedad. Estado inicial: 1 tradicional y 0 de lomo saltado.
+- Cantidad independiente de 0 a 20 por variedad. Estado inicial: 1 tradicional y 0 del resto.
+- El selector muestra las disponibles a la izquierda, con un check para incluirlas, el precio y la cantidad. El check enciende la papa en 1 y la apaga en 0; los botones solo cambian la cantidad cuando ya está elegida. A la derecha, en «Tu pedido», salen solo las marcadas, el precio de cada línea y el total. En pantallas menores a `lg`, ese pedido queda fijo abajo.
 - El subtotal es solo de las papas. El delivery no se cobra en la página: Alicia lo confirma por WhatsApp.
 - Cobertura: solo Lince, Lima. La ampliación a otros distritos es una intención futura, no una función.
 - Escribir por WhatsApp no confirma el pedido.
 - Alérgeno declarado en el FAQ: contiene huevo.
-- Badge visible del hero: «Desde S/ 15».
+- Badge visible del hero: «Desde S/ 7».
 
 ## Pedido por WhatsApp
 
@@ -46,7 +48,7 @@ Todo enlace `wa.me` se arma en `src/lib/whatsapp.ts` con `buildWhatsAppOrderUrl`
 - El mensaje lista cada variedad con cantidad, precio unitario y subtotal de línea, el subtotal general, las tres cremas y la entrega en Lince, y pide confirmar disponibilidad y costo de delivery.
 - Si no hay unidades, el selector deshabilita el CTA («Agrega al menos una papa rellena») y no genera URL.
 - El CTA del header y el del cierre usan un pedido fijo de 1 tradicional. No reflejan las cantidades del selector, que viven solo en el cliente durante la visita.
-- En móvil, con al menos una unidad, hay un CTA fijo abajo a la derecha (`md:hidden`) con el total del selector. El footer deja `pb-24` en móvil para no quedar tapado.
+- En pantallas menores a `lg`, «Tu pedido» va fijo al borde inferior, con las líneas, el total y el botón de WhatsApp. El footer reserva `pb-72` para no quedar tapado. Desde `lg` ese panel vive a la derecha del catálogo y el footer no reserva ese espacio.
 
 ## Alcance cerrado
 
@@ -92,7 +94,7 @@ Secciones con ancla: `#inicio`, `#pedido`, `#la-papa`, `#historia`, `#como-pedir
 - Foto hero con `priority`, `alt` propio y `object-cover`. No sustituir el archivo salvo pedido explícito.
 - Foco visible (outline dorado), controles de cantidad con nombre accesible, y `prefers-reduced-motion` en `globals.css`.
 - `<body suppressHydrationWarning>`: dejarlo. Evita el aviso cuando el navegador o una extensión escribe atributos en `body` antes de hidratar.
-- JSON-LD `Product` con `AggregateOffer` de S/ 15 a S/ 17. Actualizarlo si cambian los precios.
+- JSON-LD `Product` con `AggregateOffer` de S/ 7 a S/ 16. Actualizarlo si cambian los precios.
 - El título mobile del hero usa `clamp` para no desbordar en pantallas angostas. Los botones de cantidad miden al menos 44px en móvil.
 
 ## Convenciones
@@ -100,7 +102,7 @@ Secciones con ancla: `#inicio`, `#pedido`, `#la-papa`, `#historia`, `#como-pedir
 - Imports internos con alias `@/`.
 - Precios y nombres de variedad salen de `siteConfig`. El texto del pedido sale de `whatsapp.ts`.
 - Copy en español de Perú, tono casero y directo. No prometer confirmación ni precio de delivery en la página.
-- Verificar cambios de UI en el navegador (escritorio y móvil): selector en 0, una variedad, ambas, y que el CTA flotante no tape el footer.
+- Verificar cambios de UI en el navegador (escritorio y móvil): selector en 0, una variedad, las tres, el total de la derecha y que el pedido fijo no tape el footer.
 
 ## Bitácora
 
@@ -109,6 +111,12 @@ Secciones con ancla: `#inicio`, `#pedido`, `#la-papa`, `#historia`, `#como-pedir
 - 2026-10-03 · `SITE_URL` vale con o sin protocolo. `metadataBase` normaliza a URL absoluta y, si no hay esquema, usa `https://`. Se documentó en el README.
 - 2026-10-03 · `AGENTS.md` queda como memoria entre sesiones: producto de dos variedades, redirects heredados y reglas de pedido descritas arriba.
 - 2026-10-03 · Producción en Hostinger, web app nueva `lightgrey-sheep-820074.hostingersite.com`, desplegada desde `abraham-development/ecommerce-comida` rama `main`. El build de Hostinger es `build:hostinger` (`next build --webpack`) porque el servidor no carga el SWC nativo de Turbopack. `next.config.mjs` evita que ese mismo fallo impida leer la config. Variables de producción: `WHATSAPP_NUMBER` y `SITE_URL` (el dominio de esa web app).
+- 2026-10-03 · Selector de pedido de prueba: catálogo a la izquierda y «Tu pedido» a la derecha, con una tercera variedad de muestra (ají de gallina, S/ 16). En móvil el pedido queda fijo abajo. Se elige cada papa con el check de la izquierda.
+- 2026-10-03 · La variedad `tradicional` se muestra como «Papa rellena + ensalada especial», a S/ 15.
+- 2026-10-03 · La variedad `lomo-saltado` se muestra como «Papa rellena + ensalada especial + arroz chaufa», a S/ 17.
+- 2026-10-03 · La papa rellena + ensalada especial baja a S/ 7. El badge del hero muestra el precio más bajo.
+- 2026-10-03 · La papa rellena + ensalada especial + arroz chaufa baja a S/ 12.
+- 2026-10-03 · En «Tu pedido» las cremas se anuncian como «Tu pedido incluye gratis». El mensaje de WhatsApp dice lo mismo.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

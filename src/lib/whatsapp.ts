@@ -32,7 +32,7 @@ export function buildWhatsAppOrderUrl({ phone, items }: WhatsAppOrderInput): str
     ...orderLines,
     "",
     `Subtotal: S/ ${total.toFixed(2)}`,
-    "Incluye crema huancaína, crema de ocopa y ají.",
+    "Tu pedido incluye gratis crema huancaína, crema de ocopa y ají.",
     "Entrega en Lince.",
     "",
     "¿Me confirmas disponibilidad y costo de delivery, por favor?",

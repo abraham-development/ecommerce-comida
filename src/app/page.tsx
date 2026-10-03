@@ -43,6 +43,7 @@ export default function HomePage() {
     ],
   });
 
+  const prices = siteConfig.product.options.map((option) => option.price);
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -55,10 +56,10 @@ export default function HomePage() {
     },
     offers: {
       "@type": "AggregateOffer",
-      lowPrice: 15,
-      highPrice: 17,
+      lowPrice: Math.min(...prices),
+      highPrice: Math.max(...prices),
       priceCurrency: "PEN",
-      offerCount: 2,
+      offerCount: siteConfig.product.options.length,
       areaServed: "Lince, Lima, Perú",
     },
   };
@@ -121,7 +122,7 @@ export default function HomePage() {
         <div className="pointer-events-none absolute -top-32 -right-28 h-96 w-96 rounded-full bg-[#e6a63a]/20 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 -left-40 h-80 w-80 rounded-full bg-[#b83a2d]/10 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-[1.02fr_.98fr] lg:px-8 lg:py-24">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:gap-12 sm:px-6 sm:py-16 lg:grid-cols-[1.35fr_.65fr] lg:px-8 lg:py-16">
           <div className="relative z-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#e4cfad] bg-white/75 px-4 py-2 text-xs font-black tracking-[0.14em] text-[#8d3b2e] uppercase shadow-sm">
               <Sparkles className="h-4 w-4 text-[#d88a22]" /> Hecha en casa, en Lince
@@ -142,10 +143,11 @@ export default function HomePage() {
               <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2.5 shadow-sm sm:px-4"><Heart className="h-4 w-4 text-[#b83a2d]" /> Sabor casero</span>
             </div>
 
-            <div className="mt-9">
+            <div className="mt-9 max-lg:mb-44">
               <WhatsAppOrder
                 phone={phone}
                 options={siteConfig.product.options}
+                creams={siteConfig.product.creams}
                 maxQuantity={siteConfig.product.maxQuantity}
               />
             </div>
@@ -166,7 +168,7 @@ export default function HomePage() {
               </figcaption>
             </figure>
             <div className="absolute -right-2 -bottom-4 grid h-24 w-24 rotate-6 place-items-center rounded-full border-4 border-[#fff8eb] bg-[#b83a2d] text-center text-white shadow-xl sm:-right-8 sm:-bottom-5 sm:h-32 sm:w-32">
-              <span><small className="font-bold">Desde</small><strong className="font-display block text-2xl sm:text-3xl">S/ 15</strong></span>
+              <span><small className="font-bold">Desde</small><strong className="font-display block text-2xl sm:text-3xl">S/ {Math.min(...prices)}</strong></span>
             </div>
           </div>
         </div>
@@ -243,7 +245,7 @@ export default function HomePage() {
 
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {[
-              ["1", Clock3, "Arma tu combinación", "Indica por separado cuántas papas tradicionales y de lomo saltado quieres."],
+              ["1", Clock3, "Arma tu combinación", "Elige cuántas quieres de cada variedad. A la derecha ves lo que llevas y el total."],
               ["2", WhatsAppIcon, "Escríbenos por WhatsApp", "Abriremos un mensaje listo para que solo tengas que enviarlo."],
               ["3", MapPin, "Coordinamos en Lince", "Alicia confirmará disponibilidad, dirección y costo de delivery."],
             ].map(([number, Icon, title, description]) => {
@@ -270,7 +272,7 @@ export default function HomePage() {
           <div className="divide-y divide-white/15 border-y border-white/15">
             {[
               ["¿Dónde entregan?", "Por ahora atendemos únicamente en el distrito de Lince. Más adelante ampliaremos la cobertura a otros distritos de Lima Metropolitana."],
-              ["¿Cuánto cuesta?", "La papa rellena tradicional cuesta S/ 15 y la de lomo saltado S/ 17. Ambas incluyen crema huancaína, crema de ocopa y ají. El delivery se confirma por WhatsApp."],
+              ["¿Cuánto cuesta?", "La papa rellena + ensalada especial cuesta S/ 7, la de ají de gallina S/ 16 y la papa rellena + ensalada especial + arroz chaufa S/ 12. Las tres incluyen crema huancaína, crema de ocopa y ají. El delivery se confirma por WhatsApp."],
               ["¿El pedido queda confirmado al escribir?", "No todavía. Alicia confirmará disponibilidad y los detalles de entrega directamente en la conversación."],
               ["¿Contiene alérgenos?", "La preparación contiene huevo. Si tienes alguna alergia o restricción alimentaria, consúltala antes de confirmar."],
             ].map(([question, answer]) => (
@@ -301,7 +303,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-[#ddcdb5] bg-[#2d2118] px-4 pt-10 pb-24 text-white md:py-10">
+      <footer className="border-t border-[#ddcdb5] bg-[#2d2118] px-4 pt-10 pb-72 text-white lg:py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
           <div>
             <strong className="font-display text-2xl">Alicia</strong>
