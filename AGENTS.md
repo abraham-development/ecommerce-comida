@@ -54,7 +54,7 @@ Landing de una sola página. No hay base de datos, autenticación, panel, carrit
 
 En agosto de 2026 se retiró un ecommerce completo (Supabase, auth, admin, catálogo, carrito). No reintroducirlo salvo que Abraham lo pida de forma explícita. Las skills locales de Supabase no autorizan a volver a conectarlo.
 
-`next.config.ts` redirige las rutas viejas para que no revivan como páginas:
+`next.config.mjs` redirige las rutas viejas para que no revivan como páginas:
 
 - `/menu`, `/productos`, `/categorias`, `/marcas`, `/carrito`, `/checkout` → `/#pedido`
 - `/acerca-de-nosotros` → `/#historia`
@@ -73,7 +73,7 @@ src/components/landing/WhatsAppOrder.tsx Selector de variedades y CTAs
 src/components/landing/WhatsAppIcon.tsx  Icono accesible (aria-hidden)
 src/lib/site.ts                          Marca, variedades, precios, cremas, tope y zona
 src/lib/whatsapp.ts                      Mensaje y URL de pedido
-next.config.ts                           Redirects de las rutas del ecommerce anterior
+next.config.mjs                          Redirects de las rutas del ecommerce anterior
 recursos_imagenes/papa_rellena.jpeg      Foto principal; no recortarla: presentarla con next/image
 ```
 
