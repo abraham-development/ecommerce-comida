@@ -121,7 +121,7 @@ export default function WhatsAppOrder({ phone, options, creams, maxQuantity }: W
         </div>
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#e4d2b8] bg-[#fffaf1]/96 px-3 pt-3 shadow-[0_-16px_40px_rgba(75,48,28,.16)] backdrop-blur lg:hidden" style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}>
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#e4d2b8] bg-[#fffaf1]/96 px-3 pt-2 shadow-[0_-16px_40px_rgba(75,48,28,.16)] backdrop-blur lg:hidden" style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}>
         <OrderTicket
           selected={selected}
           creams={creams}
@@ -156,45 +156,45 @@ function OrderTicket({
   className?: string;
 }) {
   return (
-    <aside aria-label="Tu pedido" className={`rounded-[1.25rem] bg-[#2d2118] p-4 text-[#fff8eb] ${className}`}>
+    <aside aria-label="Tu pedido" className={`rounded-[1.25rem] bg-[#2d2118] text-[#fff8eb] ${compact ? "p-3" : "p-4"} ${className}`}>
       <div className="flex items-baseline justify-between gap-3">
         <p className="text-xs font-black tracking-[0.14em] text-[#efb24f] uppercase">Tu pedido</p>
         <span className="text-xs text-[#e8d8c2]">{totalQuantity} {totalQuantity === 1 ? "unidad" : "unidades"}</span>
       </div>
 
       {selected.length === 0 ? (
-        <p className="mt-4 text-sm leading-6 text-[#e8d8c2]">Todavía no elegiste ninguna papa. Marca un check a la izquierda.</p>
+        <p className={`text-[#e8d8c2] ${compact ? "mt-2 text-xs leading-4" : "mt-4 text-sm leading-6"}`}>Todavía no elegiste ninguna papa. Marca un check a la izquierda.</p>
       ) : (
-        <ul className={`mt-3 divide-y divide-white/10 ${compact ? "max-h-24 overflow-y-auto" : ""}`}>
+        <ul className={`divide-y divide-white/10 ${compact ? "mt-2" : "mt-3"}`}>
           {selected.map((option) => (
-            <li key={option.id} className="flex items-start justify-between gap-3 py-2.5">
+            <li key={option.id} className={`flex items-start justify-between gap-3 ${compact ? "py-1.5" : "py-2.5"}`}>
               <span className="min-w-0">
-                <span className="block text-sm leading-5 font-bold">{option.name}</span>
-                <span className="mt-0.5 block text-xs text-[#e8d8c2]">{option.quantity} × {formatSoles(option.price)}</span>
+                <span className={`block font-bold ${compact ? "text-[13px] leading-4" : "text-sm leading-5"}`}>{option.name}</span>
+                {!compact && (
+                  <span className="mt-0.5 block text-xs text-[#e8d8c2]">{option.quantity} × {formatSoles(option.price)}</span>
+                )}
               </span>
-              <strong className="shrink-0 text-sm">{formatSoles(option.quantity * option.price)}</strong>
+              <strong className={`shrink-0 ${compact ? "text-[13px] leading-4" : "text-sm"}`}>{formatSoles(option.quantity * option.price)}</strong>
             </li>
           ))}
         </ul>
       )}
 
-      {!compact && (
-        <p className="mt-3 text-xs leading-5 text-[#e8d8c2]">
-          <strong className="text-[#efb24f]">Tu pedido incluye gratis:</strong> {formatList(creams)}.
-        </p>
-      )}
+      <p className={`text-[#e8d8c2] ${compact ? "mt-2 text-[11px] leading-4" : "mt-3 text-xs leading-5"}`}>
+        <strong className="text-[#efb24f]">Tu pedido incluye gratis:</strong> {formatList(creams)}.
+      </p>
 
-      <div className="mt-3 flex items-end justify-between gap-3 border-t border-dashed border-white/20 pt-3">
-        <span className="text-sm text-[#e8d8c2]">Total</span>
-        <strong className="font-display text-3xl text-white">{formatSoles(total)}</strong>
+      <div className={`flex items-end justify-between gap-3 border-t border-dashed border-white/20 ${compact ? "mt-2 pt-2" : "mt-3 pt-3"}`}>
+        <span className={`text-[#e8d8c2] ${compact ? "text-xs" : "text-sm"}`}>Total</span>
+        <strong className={`font-display text-white ${compact ? "text-2xl" : "text-3xl"}`}>{formatSoles(total)}</strong>
       </div>
 
       {hasItems ? (
-        <a href={orderUrl} target="_blank" rel="noreferrer" className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#25d366] px-4 text-sm font-black text-[#102b19] transition hover:bg-[#21c15d]">
+        <a href={orderUrl} target="_blank" rel="noreferrer" className={`flex w-full items-center justify-center gap-2 rounded-full bg-[#25d366] px-4 text-sm font-black text-[#102b19] transition hover:bg-[#21c15d] ${compact ? "mt-2 min-h-11" : "mt-4 min-h-12"}`}>
           <WhatsAppIcon className="h-5 w-5 shrink-0" /> Pedir por WhatsApp
         </a>
       ) : (
-        <button type="button" disabled className="mt-4 flex min-h-12 w-full cursor-not-allowed items-center justify-center rounded-full bg-white/15 px-4 text-sm font-black text-[#e8d8c2]">
+        <button type="button" disabled className={`flex w-full cursor-not-allowed items-center justify-center rounded-full bg-white/15 px-4 text-sm font-black text-[#e8d8c2] ${compact ? "mt-2 min-h-11" : "mt-4 min-h-12"}`}>
           Agrega al menos una papa rellena
         </button>
       )}

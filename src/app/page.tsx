@@ -140,7 +140,7 @@ export default function HomePage() {
               <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2.5 shadow-sm sm:px-4"><Heart className="h-4 w-4 text-[#b83a2d]" /> Sabor casero</span>
             </div>
 
-            <div className="mt-9 max-lg:mb-44">
+            <div className="mt-9 max-lg:mb-80">
               <WhatsAppOrder
                 phone={phone}
                 options={siteConfig.product.options}
@@ -300,7 +300,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-[#ddcdb5] bg-[#2d2118] px-4 pt-10 pb-72 text-white lg:py-10">
+      <footer className="border-t border-[#ddcdb5] bg-[#2d2118] px-4 pt-10 pb-96 text-white lg:py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
           <div>
             <strong className="font-display text-2xl">Alicia</strong>
