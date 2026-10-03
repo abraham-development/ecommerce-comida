@@ -108,7 +108,7 @@ Secciones con ancla: `#inicio`, `#pedido`, `#la-papa`, `#historia`, `#como-pedir
 - 2026-08-04 · v2: ajuste móvil de tipo, paddings, áreas táctiles del selector y CTA flotante; el footer reserva espacio inferior en móvil.
 - 2026-10-03 · `SITE_URL` vale con o sin protocolo. `metadataBase` normaliza a URL absoluta y, si no hay esquema, usa `https://`. Se documentó en el README.
 - 2026-10-03 · `AGENTS.md` queda como memoria entre sesiones: producto de dos variedades, redirects heredados y reglas de pedido descritas arriba.
-- 2026-10-03 · Producción en Hostinger, web app nueva `lightgrey-sheep-820074.hostingersite.com`, desplegada desde `abraham-development/ecommerce-comida` rama `main`. El build de Hostinger es `build:hostinger` (`next build --webpack`) porque el servidor no carga el SWC nativo de Turbopack. Variables de producción: `WHATSAPP_NUMBER` y `SITE_URL` (el dominio de esa web app).
+- 2026-10-03 · Producción en Hostinger, web app nueva `lightgrey-sheep-820074.hostingersite.com`, desplegada desde `abraham-development/ecommerce-comida` rama `main`. El build de Hostinger es `build:hostinger` (`next build --webpack`) porque el servidor no carga el SWC nativo de Turbopack. `next.config.mjs` evita que ese mismo fallo impida leer la config. Variables de producción: `WHATSAPP_NUMBER` y `SITE_URL` (el dominio de esa web app).
 
 <!-- BEGIN:nextjs-agent-rules -->
 
