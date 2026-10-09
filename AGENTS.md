@@ -34,7 +34,7 @@ Fuente de verdad: `src/lib/site.ts`. No hardcodear precios ni nombres en compone
   - `aji-de-gallina`: papa rellena de ají de gallina, S/ 16. Es una muestra para ver el selector; Abraham la confirma o la retira.
 - Cada pedido incluye crema huancaína, crema de ocopa y ají. No son opcionales ni tienen precio aparte.
 - Cantidad independiente de 0 a 20 por variedad. Estado inicial: 1 tradicional y 0 del resto.
-- El selector muestra las disponibles a la izquierda, con un check para incluirlas, el precio y la cantidad. El check enciende la papa en 1 y la apaga en 0. El menos queda deshabilitado en 1; el más, si la variedad está apagada o ya llegó a 20. A la derecha, en «Tu pedido», salen solo las marcadas, el precio de cada línea y el total. En pantallas menores a `lg`, ese pedido queda fijo abajo.
+- El selector muestra las disponibles a la izquierda, con un check para incluirlas, el precio y la cantidad. El check enciende la papa en 1 y la apaga en 0. El menos queda deshabilitado en 1; el más, si la variedad está apagada o ya llegó a 20. A la derecha, en «Tu pedido», salen solo las marcadas, el precio de cada línea y el total. En pantallas menores a `lg`, ese pedido queda fijo abajo y se puede plegar.
 - El subtotal es solo de las papas. El delivery no se cobra en la página: Alicia lo confirma por WhatsApp.
 - Cobertura: solo Lince, Lima. La ampliación a otros distritos es una intención futura, no una función.
 - Escribir por WhatsApp no confirma el pedido.
@@ -49,7 +49,7 @@ Todo enlace `wa.me` se arma en `src/lib/whatsapp.ts` con `buildWhatsAppOrderUrl`
 - El mensaje lista cada variedad con cantidad, precio unitario y subtotal de línea, el subtotal general, la frase fija «Tu pedido incluye gratis crema huancaína, crema de ocopa y ají.» y la entrega en Lince, y pide confirmar disponibilidad y costo de delivery. Esa frase vive en `whatsapp.ts`. El ticket de escritorio arma la misma idea con `siteConfig.product.creams`. Si cambian las cremas, actualizar los dos sitios.
 - Si no hay unidades, el selector deshabilita el CTA («Agrega al menos una papa rellena») y no genera URL. El vacío dice: «Todavía no elegiste ninguna papa. Marca un check a la izquierda.»
 - El CTA del header y el del cierre usan un pedido fijo de 1 tradicional. No reflejan las cantidades del selector, que viven solo en el cliente durante la visita. En el header, el texto es «Pedir» por debajo de `sm` y «Pedir por WhatsApp» desde `sm`.
-- Desde `lg`, «Tu pedido» vive a la derecha del catálogo e incluye «Tu pedido incluye gratis» y el aviso de que el mensaje no confirma el pedido. Por debajo de `lg` el panel va fijo al borde inferior, en modo compacto: cada papa en una línea de 13px con su subtotal (sin la línea «N × S/ …»; la cantidad queda en «N unidades»), cremas a 11px, total en `text-2xl` y botón de al menos 44px, con `safe-area-inset-bottom`. El nombre más largo puede partir en dos líneas; las tres variedades siguen visibles, sin scroll interno. Ese modo omite solo el aviso de confirmación. El bloque del pedido reserva `max-lg:mb-80` y el footer reserva `pb-96` (`lg:py-10` sin ese hueco) para no quedar tapados.
+- Desde `lg`, «Tu pedido» vive a la derecha del catálogo e incluye «Tu pedido incluye gratis» y el aviso de que el mensaje no confirma el pedido. Por debajo de `lg` el panel va fijo al borde inferior y arranca desplegado. Un botón visible dice «Plegar» y lo reduce a una franja con el total; plegado, el botón dice «Ver pedido» y lo abre de nuevo. En modo compacto: cada papa en una línea de 13px con su subtotal (sin la línea «N × S/ …»; la cantidad queda en «N unidades»), cremas a 11px, total en `text-2xl` y botón de al menos 44px, con `safe-area-inset-bottom`. El nombre más largo puede partir en dos líneas; las tres variedades siguen visibles, sin scroll interno. Ese modo omite solo el aviso de confirmación. El bloque del pedido reserva `max-lg:mb-80` y el footer reserva `pb-96` (`lg:py-10` sin ese hueco) para no quedar tapados.
 
 ## Alcance cerrado
 
@@ -129,6 +129,8 @@ Producción en Hostinger, web app `lightgrey-sheep-820074.hostingersite.com`, de
 - 2026-10-03 · Memoria alineada con el código: `MobileNav` es cliente; el ticket bajo `lg` es compacto (sin cremas ni aviso); el badge y el JSON-LD salen del mínimo y el máximo de `site.ts`; el build de Hostinger y los redirects con `:path*` quedan en las secciones operativas.
 - 2026-10-03 · «Tu pedido incluye gratis» también se muestra en el panel fijo del celular. El compacto sigue omitiendo el aviso de que el mensaje no confirma. El pedido reserva `max-lg:mb-64` y el footer `pb-[28rem]`.
 - 2026-10-03 · El panel fijo del celular usa tipo e interlineado más justos: papa en una línea de 13px, cremas a 11px, total en `text-2xl` y botón de 44px. Reserva `max-lg:mb-80` y el footer `pb-96`.
+- 2026-10-09 · En celular, «Tu pedido» se pliega a una franja con el total y se vuelve a desplegar tocando esa misma fila. En escritorio el resumen sigue abierto a la derecha.
+- 2026-10-09 · El plegado del celular lleva un botón visible: «Plegar» cuando está abierto y «Ver pedido» cuando está cerrado.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

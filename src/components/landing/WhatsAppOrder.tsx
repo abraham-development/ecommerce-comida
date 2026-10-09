@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Minus, Plus } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
 import WhatsAppIcon from "@/components/landing/WhatsAppIcon";
@@ -31,6 +31,7 @@ export default function WhatsAppOrder({ phone, options, creams, maxQuantity }: W
   const [quantities, setQuantities] = useState<Record<string, number>>(() =>
     Object.fromEntries(options.map((option, index) => [option.id, index === 0 ? 1 : 0]))
   );
+  const [summaryOpen, setSummaryOpen] = useState(true);
 
   function setOptionQuantity(optionId: string, quantity: number): void {
     setQuantities((current) => ({
@@ -122,15 +123,39 @@ export default function WhatsAppOrder({ phone, options, creams, maxQuantity }: W
       </section>
 
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#e4d2b8] bg-[#fffaf1]/96 px-3 pt-2 shadow-[0_-16px_40px_rgba(75,48,28,.16)] backdrop-blur lg:hidden" style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}>
-        <OrderTicket
-          selected={selected}
-          creams={creams}
-          totalQuantity={totalQuantity}
-          total={total}
-          hasItems={hasItems}
-          orderUrl={orderUrl}
-          compact
-        />
+        <aside aria-label="Tu pedido" className="rounded-[1.25rem] bg-[#2d2118] p-3 text-[#fff8eb]">
+          <button
+            type="button"
+            className="flex min-h-11 w-full items-center justify-between gap-3"
+            aria-expanded={summaryOpen}
+            aria-controls="resumen-pedido-movil"
+            aria-label={summaryOpen ? "Plegar resumen del pedido" : "Ver resumen del pedido"}
+            onClick={() => setSummaryOpen((open) => !open)}
+          >
+            <span className="flex min-w-0 items-center gap-2">
+              <span className="text-xs font-black tracking-[0.14em] text-[#efb24f] uppercase">Tu pedido</span>
+              {!summaryOpen && <strong className="text-sm text-white">{formatSoles(total)}</strong>}
+            </span>
+            <span className="inline-flex h-9 shrink-0 items-center gap-1 rounded-full border border-[#efb24f] bg-[#efb24f]/15 px-3 text-xs font-black text-[#efb24f]">
+              {summaryOpen ? "Plegar" : "Ver pedido"}
+              {summaryOpen ? <ChevronDown className="h-4 w-4" aria-hidden="true" /> : <ChevronUp className="h-4 w-4" aria-hidden="true" />}
+            </span>
+          </button>
+          {summaryOpen && (
+            <div id="resumen-pedido-movil">
+              <OrderTicket
+                selected={selected}
+                creams={creams}
+                totalQuantity={totalQuantity}
+                total={total}
+                hasItems={hasItems}
+                orderUrl={orderUrl}
+                compact
+                hideHeader
+              />
+            </div>
+          )}
+        </aside>
       </div>
     </>
   );
@@ -144,6 +169,7 @@ function OrderTicket({
   hasItems,
   orderUrl,
   compact = false,
+  hideHeader = false,
   className = "",
 }: {
   selected: readonly SelectedOption[];
@@ -153,14 +179,11 @@ function OrderTicket({
   hasItems: boolean;
   orderUrl: string;
   compact?: boolean;
+  hideHeader?: boolean;
   className?: string;
 }) {
-  return (
-    <aside aria-label="Tu pedido" className={`rounded-[1.25rem] bg-[#2d2118] text-[#fff8eb] ${compact ? "p-3" : "p-4"} ${className}`}>
-      <div className="flex items-baseline justify-between gap-3">
-        <p className="text-xs font-black tracking-[0.14em] text-[#efb24f] uppercase">Tu pedido</p>
-        <span className="text-xs text-[#e8d8c2]">{totalQuantity} {totalQuantity === 1 ? "unidad" : "unidades"}</span>
-      </div>
+  const body = (
+    <>
 
       {selected.length === 0 ? (
         <p className={`text-[#e8d8c2] ${compact ? "mt-2 text-xs leading-4" : "mt-4 text-sm leading-6"}`}>Todavía no elegiste ninguna papa. Marca un check a la izquierda.</p>
@@ -202,6 +225,18 @@ function OrderTicket({
       {!compact && (
         <p className="mt-3 text-center text-[11px] leading-4 text-[#cbb9a5]">El mensaje no confirma el pedido. Alicia responde con disponibilidad y el costo de delivery en Lince.</p>
       )}
+    </>
+  );
+
+  if (hideHeader) return body;
+
+  return (
+    <aside aria-label="Tu pedido" className={`rounded-[1.25rem] bg-[#2d2118] text-[#fff8eb] ${compact ? "p-3" : "p-4"} ${className}`}>
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="text-xs font-black tracking-[0.14em] text-[#efb24f] uppercase">Tu pedido</p>
+        <span className="text-xs text-[#e8d8c2]">{totalQuantity} {totalQuantity === 1 ? "unidad" : "unidades"}</span>
+      </div>
+      {body}
     </aside>
   );
 }
